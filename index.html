@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jogo de Adivinhação do Arthur</title>
+</head>
+<body>
+    <h1>Jogo de Adivinhação do Arthur</h1>
+    <p>Tente adivinhar o número entre 1 e 100.</p>
+    <input type="text" id="guessField">
+    <input type="submit" value="Enviar Palpite" onclick="checkGuess()">
+    <p id="message"></p>
+
+    <script>
+        // Gerar um número aleatório entre 1 e 100
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+
+        // Inicializar o número de tentativas
+        let attempts = 0;
+
+        function checkGuess() {
+            // Obter o palpite do jogador
+            const guess = parseInt(document.getElementById("guessField").value);
+
+            // Incrementar o número de tentativas
+            attempts++;
+
+            // Verificar se o palpite está correto
+            if (guess === randomNumber) {
+                document.getElementById("message").textContent = `Parabéns! Você acertou o número em ${attempts} tentativas.`;
+            } else if (guess < randomNumber) {
+                document.getElementById("message").textContent = "Tente um número maior.";
+            } else {
+                document.getElementById("message").textContent = "Tente um número menor.";
+            }
+
+            // Limpar o campo de entrada
+            document.getElementById("guessField").value = "";
+
+            // Focar no campo de entrada
+            document.getElementById("guessField").focus();
+        }
+    </script>
+</body>
+</html>
